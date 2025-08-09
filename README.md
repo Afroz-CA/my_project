@@ -49,7 +49,7 @@ A resource group organizes Azure resources.
    Follow the browser prompt to authenticate.
 3. Create a resource group:
    ```bash
-   az group create --name my-static-web-rg --location eastus
+   az group create --name afrozrg --location eastus
    ```
    - Replace `eastus` with your preferred region (e.g., `westus`, `centralus`).
    **Screenshot**: Capture the terminal output of the `az group create` command and save as `screenshots/resource-group-creation.png`.
@@ -57,21 +57,21 @@ A resource group organizes Azure resources.
    - Option 1: Check in the Azure Portal under **Resource Groups**.
    - Option 2: Run the following command:
      ```bash
-     az group show --name my-static-web-rg
+     az group show --name afrozrg
      ```
    **Screenshot (Optional)**: Capture the terminal output of `az group show` or the Azure Portal Resource Groups page and save as `screenshots/resource-group-verification.png`.
 
 ### 2. Create an App Service Plan
-With the resource group `my-static-web-rg` created, define the compute resources for your web app.
+With the resource group `afrozrg` created, define the compute resources for your web app.
 
 1. In the Azure Portal, search for **App Service Plans**.
 2. Click **+ Create**.
 3. Configure:
    - **Subscription**: Your subscription.
-   - **Resource Group**: `my-static-web-rg`.
-   - **Name**: `my-static-app-plan`.
+   - **Resource Group**: `afrozrg`.
+   - **Name**: `afroz-asp`.
    - **OS**: Linux (recommended for static sites).
-   - **Region**: `East US` (match resource group).
+   - **Region**: `canada central` .
    - **Pricing Tier**: Free F1 or as needed.
 4. Click **Review + Create**, then **Create**.
 
@@ -84,15 +84,15 @@ Host your static website.
 2. Click **+ Create** > **Web App**.
 3. Configure:
    - **Subscription**: Your subscription.
-   - **Resource Group**: `my-static-web-rg`.
-   - **Name**: `my-static-web-app` (must be unique).
+   - **Resource Group**: `afrozrg`.
+   - **Name**: `afroz-app` (must be unique).
    - **Publish**: Code.
-   - **Runtime Stack**: PHP 8.1 (for static HTML on Linux).
+   - **Runtime Stack**: PHP 8.2 (for static HTML on Linux).
    - **OS**: Linux.
    - **Region**: Same as above.
-   - **App Service Plan**: `my-static-app-plan`.
+   - **App Service Plan**: `afroz-asp`.
 4. Click **Review + Create**, then **Create**.
-5. Note the **Default Domain** (e.g., `https://my-static-web-app.azurewebsites.net`).
+5. Note the **Default Domain** (e.g., `https://afroz-app.azurewebsites.net`).
 
 **Screenshot**: Save as `screenshots/web-app-creation.png`.
 
@@ -102,7 +102,7 @@ Host your code on GitHub.
 1. Log in to [GitHub](https://github.com).
 2. Click **+ New Repository**.
 3. Configure:
-   - **Name**: `static-website`.
+   - **Name**: `my-project`.
    - **Visibility**: Public or Private.
    - **Initialize with README**: Optional.
 4. Click **Create Repository**.
@@ -115,11 +115,8 @@ Upload your static website files.
 1. Open your project folder in a code editor.
 2. Initialize Git and push code:
    ```bash
-   git init
-   git add .
-   git commit -m "Initial commit"
+   git remote add origin https://github.com/Afroz-CA/my-project.git
    git branch -M main
-   git remote add origin https://github.com/<your-username>/static-website.git
    git push -u origin main
    ```
 3. Verify files in GitHub repository.
