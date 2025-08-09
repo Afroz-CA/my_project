@@ -241,17 +241,22 @@ Ensure production reflects staging changes.
 Here are some screenshots of the site I rolled out using Azure App Services! They offer a quick look at the app’s style and flow, highlighting its design and how it performs in the real world. Just a fun way to show off the project!
 
 **Website Home Page**
-- ![site](./screenshots/homepage.png)
+   - ![site](./screenshots/homepage.png)
+     
 **About Me Section**
-- ![site](./screenshots/aboutme.png)
+   - ![site](./screenshots/aboutme.png)
+     
 **Our Expertise Section**
-- ![site](./screenshots/expertise.png)
+   - ![site](./screenshots/expertise.png)
+     
 **About Our Services Section**
-- ![site](./screenshots/aboutservice.png)
+   - ![site](./screenshots/aboutservice.png)
+     
 **Client Success Stories Section**
-- ![site](./screenshots/client.png)
+   - ![site](./screenshots/client.png)
+     
 **Contact Us Section**
-- ![site](./screenshots/contact.png)
+   - ![site](./screenshots/contact.png)
 
 
 
