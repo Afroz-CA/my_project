@@ -18,6 +18,7 @@ This project demonstrates deploying a static website using **Azure App Service**
 >   - [8. Deploy to Staging Slot](#8-deploy-to-staging-slot)
 >   - [9. Swap Staging with Production](#9-swap-staging-with-production)
 >   - [10. Verify Deployment](#10-verify-deployment)
+> - [Peek at deployed site](#peek)
 > - [Conclusion](#conclusion)
 
 ## Azure App Service Overview
@@ -45,7 +46,7 @@ A resource group organizes Azure resources.
    ```bash
    az login
    ```
- **AZ LOGIN SCREENSHOT**
+ >**AZ LOGIN SCREENSHOT**
    - ![az Screenshot](./screenshots/az%20login%20.png)
    Follow the browser prompt to authenticate.
 
@@ -53,7 +54,7 @@ A resource group organizes Azure resources.
    ```bash
    az group create --name afrozrg --location eastus
    ```
- **AZ GROUP CREATE & SHOW SCREENSHOT**
+ >**AZ GROUP CREATE & SHOW SCREENSHOT**
    - ![az Screenshot](./screenshots/rg-create.png)
      
    - Replace `eastus` with your preferred region (e.g., `westus`, `centralus`).
@@ -64,7 +65,7 @@ A resource group organizes Azure resources.
      ```bash
      az group show --name afrozrg
      ```
-  **AZ RESOURCE GROUP CHECK IN PORTAL SCREENSHOT**
+  >**AZ RESOURCE GROUP CHECK IN PORTAL SCREENSHOT**
    - ![az Screenshot](./screenshots/rg%20create%201.png)
 
 
@@ -86,16 +87,16 @@ Host your static website.
 4. Click **Review + Create**, then **Create**.
 5. Note the **Default Domain** (e.g., `https://afroz-app.azurewebsites.net`).
    
-**AZ WEBAPP CREATION** 
+>**AZ WEBAPP CREATION** 
   - ![az Screenshot](./screenshots/web%20app%20create.png)
 
-**AZ WEBAPP CREATED**
+>**AZ WEBAPP CREATED**
   - ![az Screenshot](./screenshots/webapp%20created.png)
 
-**AZ WEBAPP PAGE**
+>**AZ WEBAPP PAGE**
   - ![az Screenshot](./screenshots/browse%20app.png)
 
-**AZ WEBAPP BROWSE PAGE**
+>**AZ WEBAPP BROWSE PAGE**
   - ![az Screenshot](./screenshots/browse%20page.png)
 
   
@@ -110,10 +111,10 @@ Host your code on GitHub.
    - **Initialize with README**: Optional.
 4. Click **Create Repository**.
 
-**GIT REPOSITORY CREATION**
+>**GIT REPOSITORY CREATION**
   - ![az Screenshot](./screenshots/repo%20creation.png)
 
-**GIT REPOSITORY CREATED**
+>**GIT REPOSITORY CREATED**
   - ![az Screenshot](./screenshots/repo%20created.png)
 
 ### 4. Push Website Code to GitHub
@@ -128,10 +129,10 @@ Upload your static website files.
    ```
 3. Verify files in GitHub repository.
 
-**UPLOAD FILES IN GIT**
+>**UPLOAD FILES IN GIT**
   - ![az Screenshot](./screenshots/uploading%20files%20in%20git.png)
      
-**UPLOADED FILES IN GIT**
+>**UPLOADED FILES IN GIT**
    - ![az Screenshot](./screenshots/git%20site%20files%20upload.png)
 
 ### 5. Configure CI/CD with GitHub
@@ -147,10 +148,10 @@ Automate deployment to Azure.
 6. Check the **Actions** tab in GitHub for workflow status.
 7. Verify the site at the **Default Domain** URL.
 
-**DEPLOYMENT CENTER**
+>**DEPLOYMENT CENTER**
 - ![az Screenshot](./screenshots/deployment%20center.png)
   
-**PRODUCTION BROWSE PAGE**
+>**PRODUCTION BROWSE PAGE**
 - ![az Screenshot](./screenshots/production%20browse.png)
 
 ### 6. Create a Staging Deployment Slot
@@ -165,13 +166,13 @@ Test updates in a separate environment.
 5. Click **Add**.
 6. Note the staging URL (e.g., `https://afroz-app-stage.azurewebsites.net`).
 
-**UPGRADE**
+>**UPGRADE**
   - ![deployment Screenshot](./screenshots/upgrade%20to%20S1.png)
       
-**UPGRADE TO S1**
+>**UPGRADE TO S1**
    - ![deployment Screenshot](./screenshots/upgrade%20asp%20s1.png)
 
-**ADD DEPLOYMENT SLOT - STAGE**
+>**ADD DEPLOYMENT SLOT - STAGE**
    - ![deployment Screenshot](./screenshots/add%20dep%20slot.png)
 
 
@@ -193,19 +194,19 @@ Deploy updates to the staging slot.
     . Check the **Actions** tab in GitHub for workflow status.
 5. Verify changes at the staging URL.
 
-**CREATING STAGE BRANCH IN GIT**
+>**CREATING STAGE BRANCH IN GIT**
 - ![deployment Screenshot](./screenshots/create%20git%20stage.png)
 
- **MAKING CHANGES IN index.html file**
+ >**MAKING CHANGES IN index.html file**
  - ![deployment Screenshot](./screenshots/change.png)
   
-**DEPLOYMENT CENTER OF STAGE**
+>**DEPLOYMENT CENTER OF STAGE**
 - ![deployment Screenshot](./screenshots/dep%20center%20stage.png)
 
-**STAGE GIT CODE DEPLOYING**
+>**STAGE GIT CODE DEPLOYING**
 - ![deployment Screenshot](./screenshots/stage%20site%20browse.png)
   
-**STAGE BROWSE PAGE**
+>**STAGE BROWSE PAGE**
 - ![deployment Screenshot](./screenshots/stage%20browse.png)
 
 ### 8. Swap Staging with Production
@@ -219,7 +220,7 @@ Promote staging changes to production.
    - **Swap Type**: Swap.
 4. Click **Swap**.
 
-**SWAP**
+>**SWAP**
 - ![deployment Screenshot](./screenshots/swap.png)
 
 ### 9. Verify Deployment
@@ -229,34 +230,34 @@ Ensure production reflects staging changes.
 2. Confirm updated content displays.
 3. Check GitHub Actions logs for deployment status.
 
-**PRODUCTION BROWSE PAGE after swap**
+>**PRODUCTION BROWSE PAGE after swap**
 - ![deployment Screenshot](./screenshots/swap%20prod%20browse.png)
 
   
-**STAGE BROWSE PAGE after swap**
+>**STAGE BROWSE PAGE after swap**
 - ![deployment Screenshot](./screenshots/swap%20stage%20browse.png)
 
-### `A Peek at the Azure-Deployed Site`
-
-Here are some screenshots of the site I rolled out using Azure App Services! They offer a quick look at the app’s style and flow, highlighting its design and how it performs in the real world. Just a fun way to show off the project!
-
-**Website Home Page**
-   - ![site](./screenshots/homepage.png)
-     
-**About Me Section**
-   - ![site](./screenshots/aboutme.png)
-     
-**Our Expertise Section**
-   - ![site](./screenshots/expertise.png)
-     
-**About Our Services Section**
-   - ![site](./screenshots/aboutservice.png)
-     
-**Client Success Stories Section**
-   - ![site](./screenshots/client.png)
-     
-**Contact Us Section**
-   - ![site](./screenshots/contact.png)
+> > ### ```A Peek at the Azure-Deployed Site```
+> 
+> Here are some screenshots of the site I rolled out using Azure App Services! They offer a quick look at the app’s style and flow, highlighting its design and how it performs in the real world. Just a fun way to show off the project!
+> 
+>  > **Website Home Page**
+>    - ![site](./screenshots/homepage.png)
+>      
+>  > **About Me Section**
+>    - ![site](./screenshots/aboutme.png)
+>      
+>  > **Our Expertise Section**
+>    - ![site](./screenshots/expertise.png)
+>      
+>  > **About Our Services Section**
+>    - ![site](./screenshots/aboutservice.png)
+>      
+>  > **Client Success Stories Section**
+>    - ![site](./screenshots/client.png)
+>      
+>  > **Contact Us Section**
+>    - ![site](./screenshots/contact.png)
 
 
 
