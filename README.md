@@ -37,6 +37,7 @@ This project demonstrates deploying a static website using **Azure App Service**
 
 ## Deployment Steps
 
+
 ### 1. Create a Resource Group with Azure CLI
 A resource group organizes Azure resources.
 
@@ -44,29 +45,33 @@ A resource group organizes Azure resources.
 2. Log in to Azure CLI:
    ```bash
    az login
-Follow the browser prompt to authenticate.
+   ```
+   Follow the browser prompt to authenticate.
 3. Create a resource group:
-bashaz group create --name my-static-web-rg --location eastus
+   ```bash
+   az group create --name my-static-web-rg --location eastus
+   ```
+   - Replace `eastus` with your preferred region (e.g., `westus`, `centralus`).
+   **Screenshot**: Capture the terminal output of the `az group create` command and save as `screenshots/resource-group-creation.png`.
+4. Verify the resource group exists:
+   - Option 1: Check in the Azure Portal under **Resource Groups**.
+   - Option 2: Run the following command:
+     ```bash
+     az group show --name my-static-web-rg
+     ```
+   **Screenshot (Optional)**: Capture the terminal output of `az group show` or the Azure Portal Resource Groups page and save as `screenshots/resource-group-verification.png`.
 
-Replace eastus with your preferred region (e.g., westus, centralus).
-
-
-Verify the resource group in the Azure Portal under Resource Groups or run:
-bashaz group show --name my-static-web-rg
-
-
-Screenshot: Capture the terminal output of the az group create command and save as screenshots/resource-group-creation.png.
 ### 2. Create an App Service Plan
-Defines compute resources for your web app.
+With the resource group `my-static-web-rg` created, define the compute resources for your web app.
 
-1. In Azure Portal, search for **App Service Plans**.
+1. In the Azure Portal, search for **App Service Plans**.
 2. Click **+ Create**.
 3. Configure:
    - **Subscription**: Your subscription.
    - **Resource Group**: `my-static-web-rg`.
    - **Name**: `my-static-app-plan`.
    - **OS**: Linux (recommended for static sites).
-   - **Region**: Same as resource group.
+   - **Region**: `East US` (match resource group).
    - **Pricing Tier**: Free F1 or as needed.
 4. Click **Review + Create**, then **Create**.
 
