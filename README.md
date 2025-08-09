@@ -18,7 +18,7 @@ This project demonstrates deploying a static website using **Azure App Service**
 >   - [8. Deploy to Staging Slot](#8-deploy-to-staging-slot)
 >   - [9. Swap Staging with Production](#9-swap-staging-with-production)
 >   - [10. Verify Deployment](#10-verify-deployment)
-> - [Peek at deployed site](#peek)
+> - [A Peek at the Azure-Deployed Site](#a-peek-at-the-azure-deployed-site)
 > - [Conclusion](#conclusion)
 
 ## Azure App Service Overview
