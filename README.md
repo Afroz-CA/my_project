@@ -46,20 +46,22 @@ A resource group organizes Azure resources.
    ```bash
    az login
    ```
+   - ![az Screenshot](./screenshots/az%20login%20.png)
    Follow the browser prompt to authenticate.
 3. Create a resource group:
    ```bash
    az group create --name afrozrg --location eastus
    ```
+   - ![az Screenshot](./screenshots/rg-create.png)
    - Replace `eastus` with your preferred region (e.g., `westus`, `centralus`).
-   **Screenshot**: Capture the terminal output of the `az group create` command and save as `screenshots/resource-group-creation.png`.
+   
 4. Verify the resource group exists:
    - Option 1: Check in the Azure Portal under **Resource Groups**.
    - Option 2: Run the following command:
      ```bash
      az group show --name afrozrg
      ```
-   **Screenshot (Optional)**: Capture the terminal output of `az group show` or the Azure Portal Resource Groups page and save as `screenshots/resource-group-verification.png`.
+   - ![az Screenshot](./screenshots/rg%20create%201.png)
 
 
 
@@ -80,8 +82,15 @@ Host your static website.
 4. Click **Review + Create**, then **Create**.
 5. Note the **Default Domain** (e.g., `https://afroz-app.azurewebsites.net`).
 
-**Screenshot**: Save as `screenshots/web-app-creation.png`.
+ - ![az Screenshot](./screenshots/web%20app%20create.png)
 
+ - ![az Screenshot](./screenshots/webapp%20created.png)
+
+- ![az Screenshot](./screenshots/browse%20app.png)
+
+- ![az Screenshot](./screenshots/browse%20page.png)
+
+  
 ### 3. Set Up a GitHub Repository
 Host your code on GitHub.
 
@@ -93,7 +102,10 @@ Host your code on GitHub.
    - **Initialize with README**: Optional.
 4. Click **Create Repository**.
 
-**Screenshot**: Save as `screenshots/github-repo-creation.png`.
+- ![az Screenshot](./screenshots/repo%20creation.png)
+
+
+- ![az Screenshot](./screenshots/repo%20created.png)
 
 ### 4. Push Website Code to GitHub
 Upload your static website files.
@@ -107,7 +119,10 @@ Upload your static website files.
    ```
 3. Verify files in GitHub repository.
 
-**Screenshot**: Save as `screenshots/github-repo-files.png`.
+   - ![az Screenshot](./screenshots/uploading%20files%20in%20git.png)
+     
+
+ - ![az Screenshot](./screenshots/git%20site%20files%20upload.png)
 
 ### 5. Configure CI/CD with GitHub
 Automate deployment to Azure.
@@ -122,7 +137,9 @@ Automate deployment to Azure.
 6. Check the **Actions** tab in GitHub for workflow status.
 7. Verify the site at the **Default Domain** URL.
 
-**Screenshot**: Save as `screenshots/deployment-center.png`.
+- ![az Screenshot](./screenshots/deployment%20center.png)
+
+- ![az Screenshot](./screenshots/production%20browse.png)
 
 ### 6. Create a Staging Deployment Slot
 Test updates in a separate environment.
@@ -136,8 +153,15 @@ Test updates in a separate environment.
 5. Click **Add**.
 6. Note the staging URL (e.g., `https://afroz-app-stage.azurewebsites.net`).
 
-**Screenshot**: Save as `screenshots/staging-slot-creation.png`.
- - ![deployment Screenshot](./screenshots/add dep slot.png)
+    - ![deployment Screenshot](./screenshots/upgrade%20to%20S1.png)
+
+      - ![deployment Screenshot](./screenshots/upgrade%20asp%20to%20S1.png)
+
+
+ - ![deployment Screenshot](./screenshots/add%20dep%20slot.png)
+
+
+
 
 ### 7. Deploy to Staging Slot
 Deploy updates to the staging slot.
@@ -155,7 +179,11 @@ Deploy updates to the staging slot.
     . Check the **Actions** tab in GitHub for workflow status.
 5. Verify changes at the staging URL.
 
-**Screenshot**: Save as `screenshots/staging-deployment-center.png`.
+- ![deployment Screenshot](./screenshots/dep%20center%20stage.png)
+
+  - ![deployment Screenshot](./screenshots/stage%20site%20browse.png)
+ 
+- ![deployment Screenshot](./screenshots/stage%20browse.png)
 
 ### 8. Swap Staging with Production
 Promote staging changes to production.
@@ -168,7 +196,7 @@ Promote staging changes to production.
    - **Swap Type**: Swap.
 4. Click **Swap**.
 
-**Screenshot**: Save as `screenshots/slot-swap.png`.
+- ![deployment Screenshot](./screenshots/swap.png)
 
 ### 9. Verify Deployment
 Ensure production reflects staging changes.
@@ -177,7 +205,9 @@ Ensure production reflects staging changes.
 2. Confirm updated content displays.
 3. Check GitHub Actions logs for deployment status.
 
-**Screenshot**: Save as `screenshots/production-website.png`.
+   - ![deployment Screenshot](./screenshots/swap%20prod%20browse.png)
+
+- ![deployment Screenshot](./screenshots/swap%20stage%20browse.png)
 
 ## Screenshots
 Upload the following to the `screenshots/` folder in your GitHub repository:
