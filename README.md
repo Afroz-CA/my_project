@@ -1,5 +1,5 @@
 
-## Deploying a Static Website on Azure App Service with Deployment Slots
+## Deploying a Static Website on Azure App Service with Deployment Slots.
 
 This project demonstrates deploying a static website using **Azure App Service** with **GitHub** integration and **deployment slots** for seamless updates via a CI/CD pipeline. This README explains Azure App Service, deployment slots, and provides a detailed guide to deploy the website and swap slots.
 
@@ -236,16 +236,29 @@ Ensure production reflects staging changes.
 **STAGE BROWSE PAGE after swap**
 - ![deployment Screenshot](./screenshots/swap%20stage%20browse.png)
 
+### A Peek at the Azure-Deployed Site
 
-**WEBSITE HOME PAGE**
+Here are some screenshots of the site I rolled out using Azure App Services! They offer a quick look at the app’s style and flow, highlighting its design and how it performs in the real world. Just a fun way to show off the project!
+
+**Website Home Page**
+- ![site](./screenshots/homepage.png)
+**About Me Section**
+- ![site](./screenshots/aboutme.png)
+**Our Expertise Section**
+- ![site](./screenshots/expertise.png)
+**About Our Services Section**
+- ![site](./screenshots/aboutservice.png)
+**Client Success Stories Section**
+- ![site](./screenshots/client.png)
+**Contact Us Section**
+- ![site](./screenshots/contact.png)
 
 
 
 
 
 
-
-## Conclusion
+### Conclusion
 You’ve deployed a static website to Azure App Service with GitHub CI/CD and used deployment slots for zero-downtime updates. This setup enables efficient testing and deployment. Explore further Azure features like custom domains or scaling for advanced use cases.
 
 **Resources**:
