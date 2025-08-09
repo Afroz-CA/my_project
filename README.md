@@ -37,19 +37,25 @@ This project demonstrates deploying a static website using **Azure App Service**
 
 ## Deployment Steps
 
-### 1. Create a Resource Group
+### 1. Create a Resource Group with Azure CLI
 A resource group organizes Azure resources.
 
-1. Log in to the [Azure Portal](https://portal.azure.com).
-2. Search for **Resource Groups** and click **+ Create**.
-3. Enter:
-   - **Subscription**: Your Azure subscription.
-   - **Name**: `my-static-web-rg`.
-   - **Region**: E.g., `East US`.
-4. Click **Review + Create**, then **Create**.
+1. Open a terminal (e.g., Command Prompt, PowerShell, or Bash).
+2. Log in to Azure CLI:
+   ```bash
+   az login
+Follow the browser prompt to authenticate.
+3. Create a resource group:
+bashaz group create --name my-static-web-rg --location eastus
 
-**Screenshot**: Save as `screenshots/resource-group-creation.png`.
+Replace eastus with your preferred region (e.g., westus, centralus).
 
+
+Verify the resource group in the Azure Portal under Resource Groups or run:
+bashaz group show --name my-static-web-rg
+
+
+Screenshot: Capture the terminal output of the az group create command and save as screenshots/resource-group-creation.png.
 ### 2. Create an App Service Plan
 Defines compute resources for your web app.
 
