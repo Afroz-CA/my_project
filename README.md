@@ -73,10 +73,10 @@ Host your static website.
    - **Resource Group**: `afrozrg`.
    - **Name**: `afroz-app` (must be unique).
    - **Publish**: Code.
-   - **Runtime Stack**: PHP 8.2 (for static HTML on Linux).
-   - **OS**: Linux.
+   - **Runtime Stack**: .NET 9 .
+   - **OS**: windows.
    - **Region**: Same as above.
-   - **App Service Plan**: `afroz-asp`.
+   - **App Service Plan**: `(new)afroz-asp`.
 4. Click **Review + Create**, then **Create**.
 5. Note the **Default Domain** (e.g., `https://afroz-app.azurewebsites.net`).
 
@@ -128,31 +128,30 @@ Automate deployment to Azure.
 Test updates in a separate environment.
 
 1. In your web app, go to **Deployment Slots**.
-2. Click **+ Add Slot**.
-3. Enter:
-   - **Name**: `staging`.
+2. Upgrade : **S1**
+3. Click **+ Add Slot**.
+4. Enter:
+   - **Name**: `stage`.
    - **Clone Settings**: Optional (clone from production).
-4. Click **Add**.
-5. Note the staging URL (e.g., `https://my-static-web-app-staging.azurewebsites.net`).
+5. Click **Add**.
+6. Note the staging URL (e.g., `https://afroz-app-stage.azurewebsites.net`).
 
 **Screenshot**: Save as `screenshots/staging-slot-creation.png`.
 
 ### 7. Deploy to Staging Slot
 Deploy updates to the staging slot.
 
-1. In GitHub, create a `staging` branch:
-   ```bash
-   git checkout -b staging
-   git push origin staging
-   ```
-2. In Azure Portal, go to the **staging** slot’s **Deployment Center**.
-3. Configure to use the `staging` branch (as in Step 6).
-4. Update code locally, commit, and push:
-   ```bash
-   git add .
-   git commit -m "Staging updates"
-   git push origin staging
-   ```
+1. In GitHub, create a `staging` branch.
+2. Make slight changes in index.html file like **hyderabad - global** 
+3. In Azure Portal, go to the **stage** slot’s **Deployment Center**.
+4. Configure to use the `stage` branch (as in Step 6).
+   . Select **Source**: External Git.
+    .Configure:
+     - **Repository**: `https://github.com/Afroz-CA/my-project.git`.
+     - **Branch**: `staging`.
+     - **Repository type**: `public`
+    . Click **Save** to create a GitHub Actions workflow.
+    . Check the **Actions** tab in GitHub for workflow status.
 5. Verify changes at the staging URL.
 
 **Screenshot**: Save as `screenshots/staging-deployment-center.png`.
