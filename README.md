@@ -185,7 +185,7 @@ Upload the following to the `screenshots/` folder in your GitHub repository:
 - `web-app-creation.png`: Web app creation.
 - `github-repo-creation.png`: GitHub repository creation.
 - `github-repo-files.png`: Repository with uploaded files.
-- `deployment-center.png`: Production slot Deployment Center.
+- `add dep slot.png`: Production slot Deployment Center.
 - `staging-slot-creation.png`: Staging slot creation.
 - `staging-deployment-center.png`: Staging slot Deployment Center.
 - `slot-swap.png`: Slot swap configuration.
