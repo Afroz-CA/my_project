@@ -119,7 +119,7 @@ Upload your static website files.
    ```
 3. Verify files in GitHub repository.
 
-   - ![az Screenshot](./screenshots/uploading%20files%20in%20git.png)
+- ![az Screenshot](./screenshots/uploading%20files%20in%20git.png)
      
 
  - ![az Screenshot](./screenshots/git%20site%20files%20upload.png)
@@ -138,6 +138,7 @@ Automate deployment to Azure.
 7. Verify the site at the **Default Domain** URL.
 
 - ![az Screenshot](./screenshots/deployment%20center.png)
+- 
 
 - ![az Screenshot](./screenshots/production%20browse.png)
 
@@ -154,8 +155,9 @@ Test updates in a separate environment.
 6. Note the staging URL (e.g., `https://afroz-app-stage.azurewebsites.net`).
 
     - ![deployment Screenshot](./screenshots/upgrade%20to%20S1.png)
+      
 
-      - ![deployment Screenshot](./screenshots/upgrade%20asp%20to%20S1.png)
+   - ![deployment Screenshot](./screenshots/upgrade%20asp%20S1.png)
 
 
  - ![deployment Screenshot](./screenshots/add%20dep%20slot.png)
@@ -180,8 +182,10 @@ Deploy updates to the staging slot.
 5. Verify changes at the staging URL.
 
 - ![deployment Screenshot](./screenshots/dep%20center%20stage.png)
+- 
 
-  - ![deployment Screenshot](./screenshots/stage%20site%20browse.png)
+- ![deployment Screenshot](./screenshots/stage%20site%20browse.png)
+- 
  
 - ![deployment Screenshot](./screenshots/stage%20browse.png)
 
@@ -205,22 +209,12 @@ Ensure production reflects staging changes.
 2. Confirm updated content displays.
 3. Check GitHub Actions logs for deployment status.
 
-   - ![deployment Screenshot](./screenshots/swap%20prod%20browse.png)
+- ![deployment Screenshot](./screenshots/swap%20prod%20browse.png)
+
+  
 
 - ![deployment Screenshot](./screenshots/swap%20stage%20browse.png)
 
-## Screenshots
-Upload the following to the `screenshots/` folder in your GitHub repository:
-- `resource-group-creation.png`: Resource group creation.
-- `app-service-plan.png`: App Service Plan creation.
-- `web-app-creation.png`: Web app creation.
-- `github-repo-creation.png`: GitHub repository creation.
-- `github-repo-files.png`: Repository with uploaded files.
-- `add dep slot.png`: Production slot Deployment Center.
-- `staging-slot-creation.png`: Staging slot creation.
-- `staging-deployment-center.png`: Staging slot Deployment Center.
-- `slot-swap.png`: Slot swap configuration.
-- `production-website.png`: Live production site.
 
 ## Conclusion
 You’ve deployed a static website to Azure App Service with GitHub CI/CD and used deployment slots for zero-downtime updates. This setup enables efficient testing and deployment. Explore further Azure features like custom domains or scaling for advanced use cases.
