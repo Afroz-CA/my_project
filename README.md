@@ -137,6 +137,7 @@ Test updates in a separate environment.
 6. Note the staging URL (e.g., `https://afroz-app-stage.azurewebsites.net`).
 
 **Screenshot**: Save as `screenshots/staging-slot-creation.png`.
+ - ![deployment Screenshot](./screenshots/add dep slot.png)
 
 ### 7. Deploy to Staging Slot
 Deploy updates to the staging slot.
