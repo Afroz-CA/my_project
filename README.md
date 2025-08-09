@@ -1,25 +1,24 @@
 
-# Deploying a Static Website on Azure App Service with Deployment Slots
+## Deploying a Static Website on Azure App Service with Deployment Slots
 
 This project demonstrates deploying a static website using **Azure App Service** with **GitHub** integration and **deployment slots** for seamless updates via a CI/CD pipeline. This README explains Azure App Service, deployment slots, and provides a detailed guide to deploy the website and swap slots.
 
-## Table of Contents
-- [Azure App Service Overview](#azure-app-service-overview)
-- [Deployment Slots Overview](#deployment-slots-overview)
-- [Prerequisites](#prerequisites)
-- [Deployment Steps](#deployment-steps)
-  - [1. Create a Resource Group](#1-create-a-resource-group)
-  - [2. Create an App Service Plan](#2-create-an-app-service-plan)
-  - [3. Create a Web App](#3-create-a-web-app)
-  - [4. Set Up a GitHub Repository](#4-set-up-a-github-repository)
-  - [5. Push Website Code to GitHub](#5-push-website-code-to-github)
-  - [6. Configure CI/CD with GitHub](#6-configure-cicd-with-github)
-  - [7. Create a Staging Deployment Slot](#7-create-a-staging-deployment-slot)
-  - [8. Deploy to Staging Slot](#8-deploy-to-staging-slot)
-  - [9. Swap Staging with Production](#9-swap-staging-with-production)
-  - [10. Verify Deployment](#10-verify-deployment)
-- [Screenshots](#screenshots)
-- [Conclusion](#conclusion)
+> ## Table of Contents
+> - [Azure App Service Overview](#azure-app-service-overview)
+> - [Deployment Slots Overview](#deployment-slots-overview)
+> - [Prerequisites](#prerequisites)
+> - [Deployment Steps](#deployment-steps)
+>   - [1. Create a Resource Group](#1-create-a-resource-group)
+>   - [2. Create an App Service Plan](#2-create-an-app-service-plan)
+>   - [3. Create a Web App](#3-create-a-web-app)
+>   - [4. Set Up a GitHub Repository](#4-set-up-a-github-repository)
+>   - [5. Push Website Code to GitHub](#5-push-website-code-to-github)
+>   - [6. Configure CI/CD with GitHub](#6-configure-cicd-with-github)
+>   - [7. Create a Staging Deployment Slot](#7-create-a-staging-deployment-slot)
+>   - [8. Deploy to Staging Slot](#8-deploy-to-staging-slot)
+>   - [9. Swap Staging with Production](#9-swap-staging-with-production)
+>   - [10. Verify Deployment](#10-verify-deployment)
+> - [Conclusion](#conclusion)
 
 ## Azure App Service Overview
 **Azure App Service** is a managed platform-as-a-service (PaaS) by Microsoft Azure for hosting web applications, including static websites (HTML, CSS, JavaScript). It handles infrastructure tasks like server management, scaling, and security, allowing developers to focus on code. It supports multiple languages and integrates with GitHub for automated deployments.
@@ -46,13 +45,17 @@ A resource group organizes Azure resources.
    ```bash
    az login
    ```
+ **AZ LOGIN SCREENSHOT**
    - ![az Screenshot](./screenshots/az%20login%20.png)
    Follow the browser prompt to authenticate.
+
 3. Create a resource group:
    ```bash
    az group create --name afrozrg --location eastus
    ```
+ **AZ GROUP CREATE & SHOW SCREENSHOT**
    - ![az Screenshot](./screenshots/rg-create.png)
+     
    - Replace `eastus` with your preferred region (e.g., `westus`, `centralus`).
    
 4. Verify the resource group exists:
@@ -61,6 +64,7 @@ A resource group organizes Azure resources.
      ```bash
      az group show --name afrozrg
      ```
+  **AZ RESOURCE GROUP CHECK IN PORTAL SCREENSHOT**
    - ![az Screenshot](./screenshots/rg%20create%201.png)
 
 
@@ -81,14 +85,18 @@ Host your static website.
    - **App Service Plan**: `(new)afroz-asp`.
 4. Click **Review + Create**, then **Create**.
 5. Note the **Default Domain** (e.g., `https://afroz-app.azurewebsites.net`).
+   
+**AZ WEBAPP CREATION** 
+  - ![az Screenshot](./screenshots/web%20app%20create.png)
 
- - ![az Screenshot](./screenshots/web%20app%20create.png)
+**AZ WEBAPP CREATED**
+  - ![az Screenshot](./screenshots/webapp%20created.png)
 
- - ![az Screenshot](./screenshots/webapp%20created.png)
+**AZ WEBAPP PAGE**
+  - ![az Screenshot](./screenshots/browse%20app.png)
 
-- ![az Screenshot](./screenshots/browse%20app.png)
-
-- ![az Screenshot](./screenshots/browse%20page.png)
+**AZ WEBAPP BROWSE PAGE**
+  - ![az Screenshot](./screenshots/browse%20page.png)
 
   
 ### 3. Set Up a GitHub Repository
@@ -102,10 +110,11 @@ Host your code on GitHub.
    - **Initialize with README**: Optional.
 4. Click **Create Repository**.
 
-- ![az Screenshot](./screenshots/repo%20creation.png)
+**GIT REPOSITORY CREATION**
+  - ![az Screenshot](./screenshots/repo%20creation.png)
 
-
-- ![az Screenshot](./screenshots/repo%20created.png)
+**GIT REPOSITORY CREATED**
+  - ![az Screenshot](./screenshots/repo%20created.png)
 
 ### 4. Push Website Code to GitHub
 Upload your static website files.
@@ -119,10 +128,11 @@ Upload your static website files.
    ```
 3. Verify files in GitHub repository.
 
-- ![az Screenshot](./screenshots/uploading%20files%20in%20git.png)
+**UPLOAD FILES IN GIT**
+  - ![az Screenshot](./screenshots/uploading%20files%20in%20git.png)
      
-
- - ![az Screenshot](./screenshots/git%20site%20files%20upload.png)
+**UPLOADED FILES IN GIT**
+   - ![az Screenshot](./screenshots/git%20site%20files%20upload.png)
 
 ### 5. Configure CI/CD with GitHub
 Automate deployment to Azure.
@@ -137,9 +147,10 @@ Automate deployment to Azure.
 6. Check the **Actions** tab in GitHub for workflow status.
 7. Verify the site at the **Default Domain** URL.
 
+**DEPLOYMENT CENTER**
 - ![az Screenshot](./screenshots/deployment%20center.png)
-- 
-
+  
+**PRODUCTION BROWSE PAGE**
 - ![az Screenshot](./screenshots/production%20browse.png)
 
 ### 6. Create a Staging Deployment Slot
@@ -154,13 +165,14 @@ Test updates in a separate environment.
 5. Click **Add**.
 6. Note the staging URL (e.g., `https://afroz-app-stage.azurewebsites.net`).
 
-    - ![deployment Screenshot](./screenshots/upgrade%20to%20S1.png)
+**UPGRADE**
+  - ![deployment Screenshot](./screenshots/upgrade%20to%20S1.png)
       
+**UPGRADE TO S1**
+   - ![deployment Screenshot](./screenshots/upgrade%20asp%20s1.png)
 
-   - ![deployment Screenshot](./screenshots/upgrade%20asp%20S1.png)
-
-
- - ![deployment Screenshot](./screenshots/add%20dep%20slot.png)
+**ADD DEPLOYMENT SLOT - STAGE**
+   - ![deployment Screenshot](./screenshots/add%20dep%20slot.png)
 
 
 
@@ -181,12 +193,19 @@ Deploy updates to the staging slot.
     . Check the **Actions** tab in GitHub for workflow status.
 5. Verify changes at the staging URL.
 
-- ![deployment Screenshot](./screenshots/dep%20center%20stage.png)
-- 
+**CREATING STAGE BRANCH IN GIT**
+- ![deployment Screenshot](./screenshots/create%20git%20stage.png)
 
+ **MAKING CHANGES IN index.html file**
+ - ![deployment Screenshot](./screenshots/change.png)
+  
+**DEPLOYMENT CENTER OF STAGE**
+- ![deployment Screenshot](./screenshots/dep%20center%20stage.png)
+
+**STAGE GIT CODE DEPLOYING**
 - ![deployment Screenshot](./screenshots/stage%20site%20browse.png)
-- 
- 
+  
+**STAGE BROWSE PAGE**
 - ![deployment Screenshot](./screenshots/stage%20browse.png)
 
 ### 8. Swap Staging with Production
@@ -200,6 +219,7 @@ Promote staging changes to production.
    - **Swap Type**: Swap.
 4. Click **Swap**.
 
+**SWAP**
 - ![deployment Screenshot](./screenshots/swap.png)
 
 ### 9. Verify Deployment
@@ -209,11 +229,20 @@ Ensure production reflects staging changes.
 2. Confirm updated content displays.
 3. Check GitHub Actions logs for deployment status.
 
+**PRODUCTION BROWSE PAGE after swap**
 - ![deployment Screenshot](./screenshots/swap%20prod%20browse.png)
 
   
-
+**STAGE BROWSE PAGE after swap**
 - ![deployment Screenshot](./screenshots/swap%20stage%20browse.png)
+
+
+**WEBSITE HOME PAGE**
+
+
+
+
+
 
 
 ## Conclusion
