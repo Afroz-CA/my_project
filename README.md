@@ -1,177 +1,209 @@
 
-# **Afroz & Co. CA Consultation Website**
+# Deploying a Static Website on Azure App Service with Deployment Slots
 
-## **Project Overview**
+This project demonstrates deploying a static website using **Azure App Service** with **GitHub** integration and **deployment slots** for seamless updates via a CI/CD pipeline. This README explains Azure App Service, deployment slots, and provides a detailed guide to deploy the website and swap slots.
 
-**Afroz & Co. CA Consultation** is a static web application that offers a comprehensive online platform for businesses and individuals in Hyderabad to explore professional chartered accountancy services. The site provides a streamlined interface for browsing services such as accounting, taxation, auditing, business advisory, GST compliance, and financial planning. The goal is to simplify access to trusted financial solutions, helping clients achieve long-term financial growth and compliance.
+## Table of Contents
+- [Azure App Service Overview](#azure-app-service-overview)
+- [Deployment Slots Overview](#deployment-slots-overview)
+- [Prerequisites](#prerequisites)
+- [Deployment Steps](#deployment-steps)
+  - [1. Create a Resource Group](#1-create-a-resource-group)
+  - [2. Create an App Service Plan](#2-create-an-app-service-plan)
+  - [3. Create a Web App](#3-create-a-web-app)
+  - [4. Set Up a GitHub Repository](#4-set-up-a-github-repository)
+  - [5. Push Website Code to GitHub](#5-push-website-code-to-github)
+  - [6. Configure CI/CD with GitHub](#6-configure-cicd-with-github)
+  - [7. Create a Staging Deployment Slot](#7-create-a-staging-deployment-slot)
+  - [8. Deploy to Staging Slot](#8-deploy-to-staging-slot)
+  - [9. Swap Staging with Production](#9-swap-staging-with-production)
+  - [10. Verify Deployment](#10-verify-deployment)
+- [Screenshots](#screenshots)
+- [Conclusion](#conclusion)
 
-This project demonstrates the deployment of **Afroz & Co.** using Azure App Services with deployment slots for seamless updates and zero-downtime deployments.
+## Azure App Service Overview
+**Azure App Service** is a managed platform-as-a-service (PaaS) by Microsoft Azure for hosting web applications, including static websites (HTML, CSS, JavaScript). It handles infrastructure tasks like server management, scaling, and security, allowing developers to focus on code. It supports multiple languages and integrates with GitHub for automated deployments.
 
-## **Problem Statement**
+## Deployment Slots Overview
+**Deployment Slots** are isolated environments within an Azure App Service instance, enabling you to deploy and test different versions of your app (e.g., staging, production). Each slot has a unique URL and settings, allowing you to validate changes in staging before swapping to production with zero downtime.
 
-Many businesses and individuals face challenges in finding reliable and professional chartered accountancy services tailored to their needs. With complex financial regulations and diverse options, it can be overwhelming to make informed decisions about accounting, taxation, and advisory services. The challenge was to deploy a user-friendly website on Azure using a robust deployment strategy for efficient updates and high availability.
+## Prerequisites
+- **Azure Account**: Active subscription (free trial available at [azure.microsoft.com](https://azure.microsoft.com)).
+- **GitHub Account**: For hosting your website code.
+- **Git**: Installed locally for version control.
+- **Static Website Files**: HTML, CSS, JavaScript files ready for deployment.
+- **Azure CLI** (optional): For CLI-based management ([install guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli)).
+- **Code Editor**: E.g., Visual Studio Code.
 
-## **Project Goals**
+## Deployment Steps
 
-- Deploy the **Afroz & Co.** website on Azure using App Services.
-- Set up **deployment slots** for staging and production to ensure seamless updates.
-- Host the static website and make it accessible via a custom domain: [https://afroz-ca.github.io/ca_site/](https://afroz-ca.github.io/ca_site/).
-- Provide an intuitive interface for users to explore services and contact information.
+### 1. Create a Resource Group
+A resource group organizes Azure resources.
 
-## **Technologies and Azure Services Used**
+1. Log in to the [Azure Portal](https://portal.azure.com).
+2. Search for **Resource Groups** and click **+ Create**.
+3. Enter:
+   - **Subscription**: Your Azure subscription.
+   - **Name**: `my-static-web-rg`.
+   - **Region**: E.g., `East US`.
+4. Click **Review + Create**, then **Create**.
 
-1. **Azure CLI**: Used to create the resource group and manage Azure resources.
-2. **Azure App Services**: Hosted the static website with scalability features.
-3. **Azure Deployment Slots**: Enabled staging and production environments for updates.
-4. **GitHub**: Hosted the website’s source code in a public repository.
-5. **HTML/CSS/JavaScript**: Built the static frontend for a responsive experience.
-6. **Git**: Used for version control and cloning the website onto Azure.
+**Screenshot**: Save as `screenshots/resource-group-creation.png`.
 
-## **Project Steps**
+### 2. Create an App Service Plan
+Defines compute resources for your web app.
 
-### **1. Website Development**
+1. In Azure Portal, search for **App Service Plans**.
+2. Click **+ Create**.
+3. Configure:
+   - **Subscription**: Your subscription.
+   - **Resource Group**: `my-static-web-rg`.
+   - **Name**: `my-static-app-plan`.
+   - **OS**: Linux (recommended for static sites).
+   - **Region**: Same as resource group.
+   - **Pricing Tier**: Free F1 or as needed.
+4. Click **Review + Create**, then **Create**.
 
-- **Afroz & Co. Website**: A static web application developed using HTML, CSS, and JavaScript, offering a platform to explore accounting, taxation, auditing, business advisory, GST compliance, and financial planning services. Designed with user experience in mind, the site provides a streamlined interface for browsing services and contacting CA Afroz Begum.
+**Screenshot**: Save as `screenshots/app-service-plan.png`.
 
-**Screenshot**: [Path to Website Development Screenshot]
+### 3. Create a Web App
+Host your static website.
 
-### **2. Deploying the Website on GitHub**
+1. In Azure Portal, search for **App Services**.
+2. Click **+ Create** > **Web App**.
+3. Configure:
+   - **Subscription**: Your subscription.
+   - **Resource Group**: `my-static-web-rg`.
+   - **Name**: `my-static-web-app` (must be unique).
+   - **Publish**: Code.
+   - **Runtime Stack**: PHP 8.1 (for static HTML on Linux).
+   - **OS**: Linux.
+   - **Region**: Same as above.
+   - **App Service Plan**: `my-static-app-plan`.
+4. Click **Review + Create**, then **Create**.
+5. Note the **Default Domain** (e.g., `https://my-static-web-app.azurewebsites.net`).
 
-- The frontend of **Afroz & Co.** was uploaded to a public GitHub repository: [https://github.com/afroz-ca/ca_site](https://github.com/afroz-ca/ca_site).
+**Screenshot**: Save as `screenshots/web-app-creation.png`.
 
-**Screenshot**: [Path to GitHub Repository Setup Screenshot]
+### 4. Set Up a GitHub Repository
+Host your code on GitHub.
 
-### **3. Azure Deployment Using App Services**
+1. Log in to [GitHub](https://github.com).
+2. Click **+ New Repository**.
+3. Configure:
+   - **Name**: `static-website`.
+   - **Visibility**: Public or Private.
+   - **Initialize with README**: Optional.
+4. Click **Create Repository**.
 
-- **Resource Group**: Created using Azure CLI to hold all the resources.
-  - Command:
-    ```bash
-    az group create --name AfrozCA_RG --location eastus
-    ```
+**Screenshot**: Save as `screenshots/github-repo-creation.png`.
 
-**Screenshot**: [Path to Resource Group Creation Screenshot]
+### 5. Push Website Code to GitHub
+Upload your static website files.
 
-- **App Service Plan**: Created to define the pricing and scaling tier.
-  - Command:
-    ```bash
-    az appservice plan create --name AfrozCA_AppServicePlan --resource-group AfrozCA_RG --sku F1 --location eastus
-    ```
+1. Open your project folder in a code editor.
+2. Initialize Git and push code:
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial commit"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/static-website.git
+   git push -u origin main
+   ```
+3. Verify files in GitHub repository.
 
-**Screenshot**: [Path to App Service Plan Creation Screenshot]
+**Screenshot**: Save as `screenshots/github-repo-files.png`.
 
-- **Web App**: Created in Azure App Services to host the static website.
-  - Command:
-    ```bash
-    az webapp create --resource-group AfrozCA_RG --plan AfrozCA_AppServicePlan --name AfrozCA-WebApp --runtime "NODE|18-lts"
-    ```
+### 6. Configure CI/CD with GitHub
+Automate deployment to Azure.
 
-**Screenshot**: [Path to Web App Creation Screenshot]
+1. In Azure Portal, go to your web app’s **Deployment Center**.
+2. Select **Source**: GitHub.
+3. Authorize Azure to access GitHub.
+4. Configure:
+   - **Organization**: Your GitHub account.
+   - **Repository**: `static-website`.
+   - **Branch**: `main`.
+5. Click **Save** to create a GitHub Actions workflow.
+6. Check the **Actions** tab in GitHub for workflow status.
+7. Verify the site at the **Default Domain** URL.
 
-- **Deployment Source**: Configured continuous deployment from the GitHub repository.
-  - Command:
-    ```bash
-    az webapp deployment source config --name AfrozCA-WebApp --resource-group AfrozCA_RG --repo-url https://github.com/afroz-ca/ca_site --branch main --manual-integration
-    ```
+**Screenshot**: Save as `screenshots/deployment-center.png`.
 
-**Screenshot**: [Path to Deployment Source Configuration Screenshot]
+### 7. Create a Staging Deployment Slot
+Test updates in a separate environment.
 
-### **4. Deployment Slots Setup**
+1. In your web app, go to **Deployment Slots**.
+2. Click **+ Add Slot**.
+3. Enter:
+   - **Name**: `staging`.
+   - **Clone Settings**: Optional (clone from production).
+4. Click **Add**.
+5. Note the staging URL (e.g., `https://my-static-web-app-staging.azurewebsites.net`).
 
-- **Staging Slot**: Created in Azure App Services for testing updates.
-  - Command:
-    ```bash
-    az webapp deployment slot create --name AfrozCA-WebApp --resource-group AfrozCA_RG --slot staging --configuration-source AfrozCA-WebApp
-    ```
+**Screenshot**: Save as `screenshots/staging-slot-creation.png`.
 
-**Screenshot**: [Path to Staging Slot Creation Screenshot]
+### 8. Deploy to Staging Slot
+Deploy updates to the staging slot.
 
-- **Deploy to Staging**: Pushed updates to the GitHub repository to trigger deployment to the staging slot.
-  - Monitored deployment logs:
-    ```bash
-    az webapp log tail --name AfrozCA-WebApp --resource-group AfrozCA_RG --slot staging
-    ```
+1. In GitHub, create a `staging` branch:
+   ```bash
+   git checkout -b staging
+   git push origin staging
+   ```
+2. In Azure Portal, go to the **staging** slot’s **Deployment Center**.
+3. Configure to use the `staging` branch (as in Step 6).
+4. Update code locally, commit, and push:
+   ```bash
+   git add .
+   git commit -m "Staging updates"
+   git push origin staging
+   ```
+5. Verify changes at the staging URL.
 
-**Screenshot**: [Path to Staging Slot Deployment Screenshot]
+**Screenshot**: Save as `screenshots/staging-deployment-center.png`.
 
-- **Slot Swapping**: Configured to swap staging and production slots for zero-downtime updates.
-  - Command:
-    ```bash
-    az webapp deployment slot swap --name AfrozCA-WebApp --resource-group AfrozCA_RG --slot staging
-    ```
+### 9. Swap Staging with Production
+Promote staging changes to production.
 
-**Screenshot**: [Path to Slot Swap Screenshot]
+1. In **Deployment Slots**, select the **staging** slot.
+2. Click **Swap**.
+3. Configure:
+   - **Source**: `staging`.
+   - **Destination**: `Production`.
+   - **Swap Type**: Swap.
+4. Click **Swap**.
 
-### **5. Custom Domain Configuration**
+**Screenshot**: Save as `screenshots/slot-swap.png`.
 
-- Configured a custom domain for the web app.
-  - Command:
-    ```bash
-    az webapp config hostname add --resource-group AfrozCA_RG --webapp-name AfrozCA-WebApp --hostname afroz-ca.github.io
-    ```
-- Verified domain ownership and configured SSL bindings for HTTPS.
+### 10. Verify Deployment
+Ensure production reflects staging changes.
 
-**Screenshot**: [Path to Custom Domain Configuration Screenshot]
+1. Visit the production URL (e.g., `https://my-static-web-app.azurewebsites.net`).
+2. Confirm updated content displays.
+3. Check GitHub Actions logs for deployment status.
 
-### **6. Testing and Accessing the Website**
+**Screenshot**: Save as `screenshots/production-website.png`.
 
-- After deployment, the website was tested in the staging slot to verify functionality.
-- Post-swapping, the website became accessible via the production slot at [https://afroz-ca.github.io/ca_site/](https://afroz-ca.github.io/ca_site/). Users can interact with **Afroz & Co.** to explore services and contact details.
+## Screenshots
+Upload the following to the `screenshots/` folder in your GitHub repository:
+- `resource-group-creation.png`: Resource group creation.
+- `app-service-plan.png`: App Service Plan creation.
+- `web-app-creation.png`: Web app creation.
+- `github-repo-creation.png`: GitHub repository creation.
+- `github-repo-files.png`: Repository with uploaded files.
+- `deployment-center.png`: Production slot Deployment Center.
+- `staging-slot-creation.png`: Staging slot creation.
+- `staging-deployment-center.png`: Staging slot Deployment Center.
+- `slot-swap.png`: Slot swap configuration.
+- `production-website.png`: Live production site.
 
-**Screenshot**: [Path to Website Testing Screenshot]
+## Conclusion
+You’ve deployed a static website to Azure App Service with GitHub CI/CD and used deployment slots for zero-downtime updates. This setup enables efficient testing and deployment. Explore further Azure features like custom domains or scaling for advanced use cases.
 
-## **Azure Services and Tools Used**
-
-- **Azure CLI**: Resource group creation and management.
-- **Azure App Services**: Hosting the static website.
-- **Azure Deployment Slots**: Zero-downtime deployment management.
-- **GitHub**: Version control and continuous deployment.
-- **HTML/CSS/JavaScript**: Building the static website.
-- **Git**: Managing the website’s codebase.
-
-## **Live Website and Resources**
-
-- **Website Link**: [https://afroz-ca.github.io/ca_site/](https://afroz-ca.github.io/ca_site/)
-- **GitHub Repository**: [https://github.com/afroz-ca/ca_site](https://github.com/afroz-ca/ca_site)
-
-**Screenshots**:
-
-- **Created Resource Group Screenshot**  
-  - [Path to Resource Group Creation Screenshot]
-
-- **App Service Plan Creation Screenshot**  
-  - [Path to App Service Plan Creation Screenshot]
-
-- **Web App Creation Screenshot**  
-  - [Path to Web App Creation Screenshot]
-
-- **Deployment Source Configuration Screenshot**  
-  - [Path to Deployment Source Configuration Screenshot]
-
-- **Staging Slot Creation Screenshot**  
-  - [Path to Staging Slot Creation Screenshot]
-
-- **Staging Slot Deployment Screenshot**  
-  - [Path to Staging Slot Deployment Screenshot]
-
-- **Slot Swap Screenshot**  
-  - [Path to Slot Swap Screenshot]
-
-- **Custom Domain Configuration Screenshot**  
-  - [Path to Custom Domain Configuration Screenshot]
-
-- **Website Home Page Screenshot**  
-  - [Path to Website Home Page Screenshot]
-
-- **About Page Screenshot**  
-  - [Path to About Page Screenshot]
-
-- **Services Page Screenshot**  
-  - [Path to Services Page Screenshot]
-
-- **Contact Us Page Screenshot**  
-  - [Path to Contact Us Page Screenshot]
-
-## **Conclusion**
-
-This project showcases the end-to-end process of deploying a static website using Azure App Services and deployment slots. By distributing updates through staging and production slots, we ensure high availability and seamless updates for the **Afroz & Co.** platform. The integration of Azure’s powerful tools and GitHub simplified the deployment and configuration process.
+**Resources**:
+- [Azure App Service Docs](https://learn.microsoft.com/en-us/azure/app-service/)
+- [GitHub Actions Docs](https://docs.github.com/en/actions)
 ```
+
