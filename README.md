@@ -61,23 +61,9 @@ A resource group organizes Azure resources.
      ```
    **Screenshot (Optional)**: Capture the terminal output of `az group show` or the Azure Portal Resource Groups page and save as `screenshots/resource-group-verification.png`.
 
-### 2. Create an App Service Plan
-With the resource group `afrozrg` created, define the compute resources for your web app.
 
-1. In the Azure Portal, search for **App Service Plans**.
-2. Click **+ Create**.
-3. Configure:
-   - **Subscription**: Your subscription.
-   - **Resource Group**: `afrozrg`.
-   - **Name**: `afroz-asp`.
-   - **OS**: Linux (recommended for static sites).
-   - **Region**: `canada central` .
-   - **Pricing Tier**: Free F1 or as needed.
-4. Click **Review + Create**, then **Create**.
 
-**Screenshot**: Save as `screenshots/app-service-plan.png`.
-
-### 3. Create a Web App
+### 2. Create a Web App
 Host your static website.
 
 1. In Azure Portal, search for **App Services**.
@@ -96,7 +82,7 @@ Host your static website.
 
 **Screenshot**: Save as `screenshots/web-app-creation.png`.
 
-### 4. Set Up a GitHub Repository
+### 3. Set Up a GitHub Repository
 Host your code on GitHub.
 
 1. Log in to [GitHub](https://github.com).
@@ -109,7 +95,7 @@ Host your code on GitHub.
 
 **Screenshot**: Save as `screenshots/github-repo-creation.png`.
 
-### 5. Push Website Code to GitHub
+### 4. Push Website Code to GitHub
 Upload your static website files.
 
 1. Open your project folder in a code editor.
@@ -123,23 +109,22 @@ Upload your static website files.
 
 **Screenshot**: Save as `screenshots/github-repo-files.png`.
 
-### 6. Configure CI/CD with GitHub
+### 5. Configure CI/CD with GitHub
 Automate deployment to Azure.
 
 1. In Azure Portal, go to your web app’s **Deployment Center**.
-2. Select **Source**: GitHub.
-3. Authorize Azure to access GitHub.
-4. Configure:
-   - **Organization**: Your GitHub account.
-   - **Repository**: `static-website`.
+2. Select **Source**: External Git.
+3. Configure:
+   - **Repository**: `https://github.com/Afroz-CA/my-project.git`.
    - **Branch**: `main`.
+   - **Repository type**: `public`
 5. Click **Save** to create a GitHub Actions workflow.
 6. Check the **Actions** tab in GitHub for workflow status.
 7. Verify the site at the **Default Domain** URL.
 
 **Screenshot**: Save as `screenshots/deployment-center.png`.
 
-### 7. Create a Staging Deployment Slot
+### 6. Create a Staging Deployment Slot
 Test updates in a separate environment.
 
 1. In your web app, go to **Deployment Slots**.
@@ -152,7 +137,7 @@ Test updates in a separate environment.
 
 **Screenshot**: Save as `screenshots/staging-slot-creation.png`.
 
-### 8. Deploy to Staging Slot
+### 7. Deploy to Staging Slot
 Deploy updates to the staging slot.
 
 1. In GitHub, create a `staging` branch:
@@ -172,7 +157,7 @@ Deploy updates to the staging slot.
 
 **Screenshot**: Save as `screenshots/staging-deployment-center.png`.
 
-### 9. Swap Staging with Production
+### 8. Swap Staging with Production
 Promote staging changes to production.
 
 1. In **Deployment Slots**, select the **staging** slot.
@@ -185,7 +170,7 @@ Promote staging changes to production.
 
 **Screenshot**: Save as `screenshots/slot-swap.png`.
 
-### 10. Verify Deployment
+### 9. Verify Deployment
 Ensure production reflects staging changes.
 
 1. Visit the production URL (e.g., `https://my-static-web-app.azurewebsites.net`).
