@@ -236,7 +236,7 @@ Ensure production reflects staging changes.
 **STAGE BROWSE PAGE after swap**
 - ![deployment Screenshot](./screenshots/swap%20stage%20browse.png)
 
-### A Peek at the Azure-Deployed Site
+### `A Peek at the Azure-Deployed Site`
 
 Here are some screenshots of the site I rolled out using Azure App Services! They offer a quick look at the app’s style and flow, highlighting its design and how it performs in the real world. Just a fun way to show off the project!
 
