@@ -25,7 +25,7 @@ This project demonstrates deploying a static website using **Azure App Service**
 **Azure App Service** is a managed platform-as-a-service (PaaS) by Microsoft Azure for hosting web applications, including static websites (HTML, CSS, JavaScript). It handles infrastructure tasks like server management, scaling, and security, allowing developers to focus on code. It supports multiple languages and integrates with GitHub for automated deployments.
 
 ## Deployment Slots Overview
-**Deployment Slots** are isolated environments within an Azure App Service instance, enabling you to deploy and test different versions of your app (e.g., staging, production). Each slot has a unique URL and settings, allowing you to validate changes in staging before swapping to production with zero downtime.
+**Deployment Slots** are isolated environments within an Azure App Service instance, enabling you to deploy and test different versions of your app (e.g., staging, production). Each slot has a unique URL and settings, allowing you to validate changes in staging before swapping to production with **zero downtime**.
 
 ## Prerequisites
 - **Azure Account**: Active subscription (free trial available at [azure.microsoft.com](https://azure.microsoft.com)).
